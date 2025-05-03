@@ -10,10 +10,10 @@
     File file = new File(filePath);
 
     if (file.exists()) {
-        //Устанавливается длина контента в ответе. Показал браузеру сколко байт получить до полной загрузки файла.
+        //Устанавливается длина контента в ответе. Показал браузеру сколько байт получить до полной загрузки файла.
         response.setContentLengthLong(file.length());
 
-        // Устанавливаю заголовок для сообщения браузеру, Content-Disposition ^w^, что файл нужно скачать, а не открыть
+        // Устанавливаю заголовок для сообщения браузеру, Content-Disposition, что файл нужно скачать, а не открыть
         response.setHeader("Content-Disposition", "attachment; filename=\"" + URLEncoder.encode(file.getName(), "UTF-8") + "\"");
 
         FileInputStream inputStream = new FileInputStream(file);

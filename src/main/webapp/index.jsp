@@ -5,7 +5,7 @@
     <title>My Applications</title>
 </head>
 <body>
-<h1><%= "Hello my friend!" %></h1>
+<h1><%= "ПРИВЕТ БАДДИ!" %></h1>
 <br/>
 <a href="Manager?path=">Main Servlet Manager ----->  Manager?path=</a>
 <br/>
