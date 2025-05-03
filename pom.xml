@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.example</groupId>
   <artifactId>lab3</artifactId>
-  <version>1.0-SNAPSHOT3</version>
+  <version>1.0-SNAPSHOT7</version>
   <name>Archetype - lab3</name>
   <packaging>war</packaging>
   <url>http://maven.apache.org</url>
@@ -41,6 +41,11 @@
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
       <version>42.7.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>4.3.8.Final</version>
     </dependency>
   </dependencies>
 

@@ -55,7 +55,7 @@
     <tr>
         <th><%= item.getName()%></th>
 
-        <th><a href=<%="http://localhost:8080/lab3-1.0-SNAPSHOT3/Download?path="+ item.getAbsolutePath().replace("\\","/").replace(" ","%20")%>> Скачать </a> </th>
+        <th><a href=<%="http://localhost:8080/lab3-1.0-SNAPSHOT7/Download?path="+ item.getAbsolutePath().replace("\\","/").replace(" ","%20")%>> Скачать </a> </th>
         <th><%= item.length()%></th>
         <th><%= new Date(item.lastModified())%></th>
     </tr>
