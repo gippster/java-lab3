@@ -25,7 +25,7 @@ public class Listener implements ServletContextListener
         configuration.setProperty("hibernate.connection.username", "postgres");
         configuration.setProperty("hibernate.connection.password", "12345");
         configuration.setProperty("hibernate.show_sql", "true");
-        configuration.setProperty("hibernate.hbm2ddl.auto", "create");
+        configuration.setProperty("hibernate.hbm2ddl.auto", "validate");
         configuration.addAnnotatedClass(User.class);
 
         StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder();
