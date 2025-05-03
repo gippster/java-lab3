@@ -1,4 +1,4 @@
-<<%@ page import="java.io.File" %>
+<%@ page import="java.io.File" %>
 <%@ page import="java.util.Date" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
@@ -7,11 +7,10 @@
     String parentDirectoryPath = "/";
 
 
-
     parentDirectoryPath = file.getParent();  // Получаем путь к родительской директории
-
-    if (parentDirectoryPath == null) {
-        parentDirectoryPath = "/";
+    String login =(String) request.getAttribute("login");
+    if (parentDirectoryPath == null || parentDirectoryPath.length() < ("C:\\Users\\sajbu\\IdeaProjects\\lab3\\lab5\\".length() + login.length())) {
+        parentDirectoryPath = "C:\\Users\\sajbu\\IdeaProjects\\lab3\\lab5\\"+request.getAttribute("login");
     }
 
 
@@ -21,7 +20,7 @@
     <title>Менеджер файлов</title>
 </head>
 <body>
-<h1>Текущая директория: "<%=directory%> "</h1>
+<h1>Текущая директория: "<%=(String) request.getAttribute("currentPath")%> "</h1>
 <a href=<%="?path="+parentDirectoryPath.replace("\\","/")%>>Назад</a>
 <table>
     <tr>
@@ -36,7 +35,7 @@
     %>
     <tr>
         <th><%= item.getName()%></th>
-        <th><a href=<%="?path="+item.getAbsolutePath().replace("\\", "/")%>/>Перейти</th>
+        <th><a href=<%="?path="+item.getAbsolutePath().replace("\\", "/").replace(" ","%20")%>/>Перейти</th>
 
 
         <th><%= item.length()%></th>
@@ -56,12 +55,16 @@
     <tr>
         <th><%= item.getName()%></th>
 
-        <th><a href=<%="http://localhost:8080/lab3-1.0-SNAPSHOT/Download?path="+ item.getAbsolutePath().replace("\\","/")%>> Скачать </a> </th>
+        <th><a href=<%="http://localhost:8080/lab3-1.0-SNAPSHOT2/Download?path="+ item.getAbsolutePath().replace("\\","/").replace(" ","%20")%>> Скачать </a> </th>
         <th><%= item.length()%></th>
         <th><%= new Date(item.lastModified())%></th>
     </tr>
     <% } %>
 </table>
-<p></p>
+<p>
+<form action="Manager" method="POST">
+    <input type="submit" value="Выйти">
+</form>
+</p>
 </body>
 </html>
