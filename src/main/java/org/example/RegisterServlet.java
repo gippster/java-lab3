@@ -1,4 +1,5 @@
 package org.example;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -9,6 +10,7 @@ import service.AuthService;
 import service.Utility;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet(urlPatterns = {"/Register"})
 public class RegisterServlet extends HttpServlet {
@@ -28,13 +30,24 @@ public class RegisterServlet extends HttpServlet {
         if(email.isEmpty() || login.isEmpty() || password.isEmpty()) {
             response.getWriter().println("Incorrect login, password or email");
         }
-        User user = AuthService.GetUser(login, password);
+
+        User user = null;
+        try {
+            user = AuthService.GetUser(login, password);
+        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            response.getWriter().println("error ");
+        }
+
         if (user != null) {
             response.getWriter().println("User already exists");
             return;
         }
 
-        AuthService.CreateUser(new User(login, password, email));
+        try {
+            AuthService.CreateUser(new User(login, password, email));
+        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            response.getWriter().println("error ");
+        }
 
         request.getSession().setAttribute("email", email);
         try {

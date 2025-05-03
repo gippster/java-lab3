@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import service.AuthService;
 import service.Utility;
+import java.sql.SQLException;
 
 import java.io.IOException;
 @WebServlet(urlPatterns = {"/Login"})
@@ -21,9 +22,13 @@ public class LoginServlet extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
-        if(AuthService.GetUser(login, password) == null) {
-            response.getWriter().println("Incorrect login or password");
-            return;
+        try {
+            if(AuthService.GetUser(login, password) == null) {
+                response.getWriter().println("incorrect password or login");
+                return;
+            }
+        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            response.getWriter().println("error ");
         }
 
         request.getSession().setAttribute("login", login);

@@ -1,25 +1,21 @@
 package service;
 
 import model.User;
+import date.UserRepository;
 
 import java.util.HashMap;
 import java.util.Objects;
-
+import java.sql.SQLException;
 public class AuthService
 {
-    private static HashMap<String, User> Users = new HashMap<>()
-    {
-        {
-            put("baobab", new User("baobab", "12345", "sajbullin77@gmail.ru"));
-        }
-    };
-    public static  void CreateUser(User user)
-    {
-        Users.put(user.getLogin(), user);
+
+    public static  void CreateUser(User user) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        UserRepository.CreateUser(user);
     }
-    public static User GetUser(String login, String password)
+
+    public static User GetUser(String login, String password) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
     {
-        User user = Users.get(login);
+        User user = UserRepository.GetUserByLogin(login);
 
         if( user == null || !Objects.equals(user.getPassword(), password)) return null;
 
